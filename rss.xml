@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/"
+     xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Example RSS Feed</title>
+        <link>http://www.example.com/rss</link>
+        <description>Example RSS Feed Description</description>
+        <atom:link href="http://www.example.com/rss" rel="self" type="application/rss+xml" />
+        <item>
+            <title>Crisis mundial en camino</title>
+            <link>http://www.ejemploaleatorio.com</link>
+            <description><![CDATA[This is the description for the first item.]]></description>
+            <category>Internacional</category>
+            <pubDate>Wed, 22 Feb 2023 00:00:00 GMT</pubDate>
+            <enclosure url="http://www.example.com/imagenes/logo1.jpg" length="12345" type="image/jpeg" />
+            <guid>http://www.ejemplo.com/rss/item1</guid>
+        </item>
+        <item>
+            <title>España gana el mundial</title>
+            <link>http://www.ejemploweb.com/</link>
+            <description><![CDATA[This is the description for the first item.]]></description>
+            <category>Deportes</category>
+            <pubdate>Tue, 28 Feb 2023 23:34:58 GMT</pubdate>
+            <enclosure url="http://www.ejemploweb.com/imag" length="12345" type="image/jpeg" />
+            <guid>http://www.ejemploweb.com/imag2</guid>
+        </item>
+    </channel>
+</rss>
