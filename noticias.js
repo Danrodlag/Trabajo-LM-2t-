@@ -1,7 +1,10 @@
 function iniciar(){
-    json = JSON.stringify(localStorage.getItem("datos"));
-    
-    for (let propiedad in json) {
-        console.log(propiedad + ": " + json[propiedad]);
-      }
+    const datos = JSON.parse(localStorage.getItem("datos"));
+    const contenedor = document.getElementById("datos");
+
+    for (let propiedad in datos) {
+        const elemento = document.createElement("p");
+        elemento.innerHTML = `${propiedad}: ${datos[propiedad]}`;
+        contenedor.appendChild(elemento);
+    }
 }
