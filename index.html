@@ -1,9 +1,33 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
+    <title>Feed RSS</title>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <h1>Feed RSS</h1>
+    <ul id="feed"></ul>
 
-</head>
-<body>
-    <h1>holo</h1>
-</body>
+    <script>
+      const url = "https://ejemplo.com/feed";
+      fetch(url)
+        .then(response => response.text())
+        .then(xml => {
+          const parser = new DOMParser();
+          const xmlDoc = parser.parseFromString(xml, "text/xml");
+          const items = xmlDoc.getElementsByTagName("item");
+          const feedList = document.getElementById("feed");
+          for (let i = 0; i < items.length; i++) {
+            const title = items[i].getElementsByTagName("title")[0].childNodes[0].nodeValue;
+            const link = items[i].getElementsByTagName("link")[0].childNodes[0].nodeValue;
+            const li = document.createElement("li");
+            const a = document.createElement("a");
+            a.href = link;
+            a.textContent = title;
+            li.appendChild(a);
+            feedList.appendChild(li);
+          }
+        });
+    </script>
+  </body>
 </html>
