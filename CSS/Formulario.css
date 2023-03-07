@@ -33,7 +33,7 @@ form{
 #botones{
     display: flex;
 }
-#botones1 {
+#submit {
     border-radius: 10px;
     border-color: white;
     background-image: url("37368.jpg");
