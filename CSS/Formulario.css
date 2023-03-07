@@ -1,0 +1,32 @@
+#titulo{
+    text-align: center;
+}
+body{
+
+    background-image: url("975787.png");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+label{
+    color: white;
+}
+#titulo{
+    color: white;
+}
+form{
+    margin: 0 auto;
+    max-width: 50%;
+}
+input{
+
+}
+form{
+    background-image: url("403183.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
