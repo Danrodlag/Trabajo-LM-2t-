@@ -15,7 +15,6 @@
             <description><![CDATA[This is the description for the first item.]]></description>
             <category>Internacional</category>
             <pubDate>Wed, 22 Feb 2023 00:00:00 GMT</pubDate>
-            <enclosure url="http://www.ejemploaleatorio.com/imagenes/logo1.jpg" length="12345" type="image/jpeg" />
             <author>danielalunes@gmail.com</author>
         </item>
         <item>
@@ -24,7 +23,6 @@
             <description><![CDATA[This is the description for the first item.]]></description>
             <category>Deportes</category>
             <pubDate>Tue, 28 Feb 2023 23:34:58 GMT</pubDate>
-            <enclosure url="http://www.ejemploweb.com/imag" length="12345" type="image/jpeg" />
             <author>danielalunes@gmail.com</author>
         </item>
     </channel>
