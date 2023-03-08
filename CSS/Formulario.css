@@ -41,7 +41,7 @@ form{
     margin: 20px;
     color: white;
 }
-#botones2{
+.botones2{
     border-radius: 10px;
     border-color: white;
     background-image: url("37368.jpg");
@@ -52,7 +52,7 @@ form{
     margin: 20px;
     color: white;
 }
-#botones2:hover{
+.botones2:hover{
     background-image: url("sharingan-写輪眼 (1).gif");
     background-size: cover;
     background-position: center;
