@@ -29,7 +29,6 @@ form{
 #submit {
     border-radius: 10px;
     border-color: white;
-    background-image: url("37368.jpg");
     background-repeat: no-repeat;
     width: 50%;
     height: 50%;
@@ -46,7 +45,7 @@ form{
 .botones2{
     border-radius: 10px;
     border-color: white;
-    background-image: url("37368.jpg");
+    background-color: black;
     background-repeat: no-repeat;
     width: 50%;
     height: 50%;
