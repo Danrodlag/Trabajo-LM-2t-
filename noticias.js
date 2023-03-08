@@ -24,11 +24,7 @@ function iniciar() {
         }
     }
 }
-function limpiarLocalStorage() {
-    localStorage.clear();
-    const contenedor = document.getElementById("datos");
-    contenedor.innerHTML = "";
-}
+
 const generarRSS = () => {
     let rss = '<?xml version="1.0" encoding="UTF-8" ?>\n';
     rss += '<rss version="2.0">\n';

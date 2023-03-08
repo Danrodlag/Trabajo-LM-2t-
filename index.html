@@ -16,9 +16,15 @@
                 const identificador = `datos-${contador++}`; // Generar identificador único
                 const datosJSON = JSON.stringify(jsonData);
                 localStorage.setItem(identificador, datosJSON); // Guardar datos con identificador único
+                this.reset();
             });
         });
     </script>
+    <script defer>  $(function() { $('#limpiarLocalStorage').on('click', function(e) {
+        e.preventDefault();
+        localStorage.clear();
+    });
+    });</script>
     <script src="noticias.js">
 
     </script>
@@ -49,7 +55,7 @@
 
             <button id="submit" class="btn btn-default" type="submit">Enviar</button>
             <button class="botones2" class="btn btn-default" type="reset">Borrar Formulario</button>
-            <button class="botones2" onclick="limpiarLocalStorage()">limpiar</button>
+            <button class="botones2" id="limpiarLocalStorage">limpiar</button>
 
         </div>
 
