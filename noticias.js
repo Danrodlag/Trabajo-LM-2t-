@@ -1,65 +1,53 @@
+
+
 function iniciar() {
+
     const contenedor = document.getElementById("datos");
-    for (let i = 0; i < localStorage.length; i++) {
-        const clave = localStorage.key(i);
-        if (clave.startsWith("datos-")) { // Buscar entradas con prefijo "datos-"
-            const datosJSON = localStorage.getItem(clave);
-            const datos = JSON.parse(datosJSON);
-            const elementoExistente = contenedor.querySelector(`div[data-identificador="${clave}"]`);
-            if (elementoExistente) { // Si ya existe, actualizar sus datos
-                for (let propiedad in datos) {
-                    elementoExistente.querySelector(`p[data-propiedad="${propiedad}"]`).innerHTML = `${propiedad}: ${datos[propiedad]}`;
-                }
-            } else { // Si no existe, crear uno nuevo
-                const nuevoElemento = document.createElement("div");
-                nuevoElemento.setAttribute("data-identificador", clave);
-                for (let propiedad in datos) {
-                    const elemento = document.createElement("p");
-                    elemento.setAttribute("data-propiedad", propiedad);
-                    elemento.innerHTML = `${propiedad}: ${datos[propiedad]}`;
-                    nuevoElemento.appendChild(elemento);
-                }
-                contenedor.appendChild(nuevoElemento);
-            }
-        }
+    let datosLocal = localStorage.getItem("datos");
+
+    if (datosLocal !== "null") {
+
+        datosLocal = datosLocal.split(";");
+
+        datosLocal.forEach(function (awa) {
+
+            let json = JSON.parse(awa);
+
+            let html = '<section>'  +`<h1>${json.Titulo}</h1>`+`<h2>${json.Autor}</h2>` + `<h3>${json.Categoría}</h3>` +`<h3>${json.Fecha}</h3>` +`<h4>${json.Descripción}</h4>` +`<h5>${json.Contenido}</h5>` + '</section>';
+
+
+
+            document.getElementById("datos").innerHTML = html
+
+        })
+
     }
 }
-function limpiarLocalStorage() {
-    localStorage.clear();
-    const contenedor = document.getElementById("datos");
-    contenedor.innerHTML = "";
-}
-const generarRSS = () => {
+
+    function limpiarHTML() {
+        localStorage.setItem("datos", null)
+
+    }
+function generarRSS() {
     let rss = '<?xml version="1.0" encoding="UTF-8" ?>\n';
     rss += '<rss version="2.0">\n';
     rss += '<channel>\n';
     rss += '<title>Noticias</title>\n';
-    rss += '<author>Autor</author>\n';
-    rss += '<category>Categoria</category>\n';
-    rss += '<date>Fecha</date>\n';
     rss += '<description>Noticias de ejemplo</description>\n';
+    rss += '<link>http://ejemplo.com/noticias</link>\n';
 
+    const datos = JSON.parse(localStorage.getItem("datos")) || [];
 
-    for (let i = 0; i < localStorage.length; i++) {
-        const clave = localStorage.key(i);
-        if (clave.startsWith("datos-")) {
-
-            const datosJSON = localStorage.getItem(clave);
-            const datos = JSON.parse(datosJSON);
-            const titulo = datos.Titulo;
-            const url = datos.URL; // reemplaza 'URL' con el nombre de la clave donde guardas la URL de la noticia
-
-            rss += '<item>\n';
-            rss += `<title>${titulo}</title>\n`;
-            rss += `<link>${url}</link>\n`;
-            rss += `<author>${datos.Autor}</author>\n`;
-            rss += `<category>${datos.Categoría}</category>\n`;
-            rss += `<date>${datos.Fecha}</date>\n`;
-            rss += `<description>${datos.Descripción}</description>\n`;
-
-            rss += '</item>\n';
-        }
-    }
+    datos.forEach(function (json) {
+        rss += '<item>\n';
+        rss += `<title>${json.Titulo}</title>\n`;
+        rss += `<link>${window.location.href}</link>\n`;
+        rss += `<author>${json.Autor}</author>\n`;
+        rss += `<category>${json.Categoría}</category>\n`;
+        rss += `<pubDate>${json.Fecha}</pubDate>\n`;
+        rss += `<description>${json.Descripción}</description>\n`;
+        rss += '</item>\n';
+    });
 
     rss += '</channel>\n';
     rss += '</rss>';
@@ -73,11 +61,21 @@ const generarRSS = () => {
     enlace.click();
     document.body.removeChild(enlace);
     URL.revokeObjectURL(url);
-};
-
-const botonRSS = document.createElement('button');
-botonRSS.textContent = 'Generar RSS';
-botonRSS.addEventListener('click', generarRSS);
-document.body.appendChild(botonRSS);
+}
 
 
+
+    function guardar() {
+
+        if (localStorage.getItem("datos") === "null") {
+
+            localStorage.setItem("datos", JSON.stringify(Object.fromEntries(new FormData(document.getElementById("miForm")))))
+
+        } else {
+
+            localStorage.setItem("datos", JSON.stringify(Object.fromEntries(new FormData(document.getElementById("miForm")))) + ";" + localStorage.getItem("datos"))
+
+        }
+
+
+    }

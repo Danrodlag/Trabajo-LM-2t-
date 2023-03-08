@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="noticias.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="noticias.js" defer></script>
 </head>
 <body onload="iniciar()">
-<h1>tit noti</h1>
-<div id="datos"></div>
-
-<button id="botones3" class="btn btn-default" onclick="generarRSS()">rss</button>
-
+    <h1>tit noti</h1>
+    <form>
+        <div id="datos"></div>
+        <button onclick="generarRSS()">rss</button>
+    </form>
 </body>
 </html>
