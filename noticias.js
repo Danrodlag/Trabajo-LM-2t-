@@ -24,4 +24,13 @@ function iniciar() {
         }
     }
 }
+function limpiarLocalStorage() {
+    localStorage.clear();
+    const contenedor = document.getElementById("datos");
+    contenedor.innerHTML = "";
+}
+
+
+
+
 
