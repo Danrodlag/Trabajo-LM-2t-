@@ -1,7 +1,6 @@
-body, html {
-    margin: 0;
-    padding: 0;
-    background-image: url("558703\ \(2\).png");
+h1{
+    text-align: center;
+
 }
 
 nav {
@@ -25,4 +24,22 @@ li {
     display: inline-block;
     text-align: center;
     margin-right: 20px;
+}
+div{
+    text-align: center;
+    margin: 0 auto;
+    width: 20%;
+    background-size: cover;
+    background-position: center;
+
+
+
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+body{
+    background-image: url("558703 (2).png");
+
 }

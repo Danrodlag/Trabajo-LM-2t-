@@ -2,13 +2,9 @@
     text-align: center;
 }
 body{
-
-    background-image: url("975787.png");
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-
+    background-color: black;
+    margin: 0px;
+    width: 100%;
 }
 label{
     color: white;
@@ -21,7 +17,7 @@ form{
     max-width: 50%;
 }
 form{
-    background-image: url("403183.jpg");
+    background-color: black;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;

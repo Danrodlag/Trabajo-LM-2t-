@@ -1,87 +1,70 @@
 function iniciar() {
-    const contenedor = document.getElementById("datos");
-    const claves = Object.keys(localStorage).filter((clave) => clave.startsWith("datos-"));
-    const ultimasClaves = claves.slice(-5); // Obtener las últimas 5 claves
-    for (const clave of ultimasClaves) {
-        const datosJSON = localStorage.getItem(clave);
-        const datos = JSON.parse(datosJSON);
-        const elementoExistente = contenedor.querySelector(`div[data-identificador="${clave}"]`);
-        if (elementoExistente) { // Si ya existe, actualizar sus datos
-            for (let propiedad in datos) {
-                if (propiedad === "Titulo") {
-                    elementoExistente.querySelector(`a[data-propiedad="${propiedad}"]`).innerHTML = datos[propiedad];
-                    elementoExistente.querySelector(`a[data-propiedad="${propiedad}"]`).href = `noticia.html?id=${clave}`; // Establecer el enlace a la noticia
-                }
-            }
-        } else { // Si no existe, crear uno nuevo
-            const nuevoElemento = document.createElement("div");
-            nuevoElemento.setAttribute("data-identificador", clave);
-            for (let propiedad in datos) {
-                if (propiedad === "Titulo") {
-                    const elemento = document.createElement("a"); // Agregar una etiqueta de enlace alrededor del título
-                    elemento.setAttribute("data-propiedad", propiedad);
-                    elemento.innerHTML = datos[propiedad];
-                    elemento.href = `noticia.html?id=${clave}`; // Establecer el enlace a la noticia
-                    nuevoElemento.appendChild(elemento);
-                }
-            }
-            contenedor.appendChild(nuevoElemento);
-        }
+// Obtener el array de objetos newsItems del localStorage
+    const newsItems = JSON.parse(localStorage.getItem('newsItems'));
+
+// Si el localStorage está vacío o no hay noticias, mostrar un mensaje
+    if (!newsItems || newsItems.length === 0) {
+        const newsTitles = document.getElementById('newsTitles');
+        newsTitles.innerHTML = '<p>No hay noticias.</p>';
+    } else {
+        const newsTitles = document.getElementById('newsTitles');
+        let it = 5;
+        // Recorrer el array de noticias y agregar cada título al DOM
+        newsItems.forEach(function(newsItem) {
+            const p = document.createElement('p');
+            const title = newsItem.titulo;
+            const a = document.createElement('a');
+            a.textContent = title;
+            a.href = `noticia${it}.html`;
+            p.appendChild(a);
+            newsTitles.appendChild(p);
+            it -=1;
+        });
     }
+
 }
-
-  
-
-
-const generarRSS = () => {
+function generarRSS() {
     let rss = '<?xml version="1.0" encoding="UTF-8" ?>\n';
     rss += '<rss version="2.0">\n';
     rss += '<channel>\n';
     rss += '<title>Noticias</title>\n';
-    rss += '<author>Autor</author>\n';
-    rss += '<category>Categoria</category>\n';
-    rss += '<date>Fecha</date>\n';
+    rss += '<link>http://ejemplo.com</link>\n';
     rss += '<description>Noticias de ejemplo</description>\n';
+    rss += '<language>es-es</language>\n';
 
+    const newsItems = JSON.parse(localStorage.getItem('newsItems'));
+    if (!newsItems || newsItems.length === 0) {
 
-    for (let i = 0; i < 5; i++) {
-        const clave = localStorage.key(i);
-        if (clave.startsWith("datos-")) {
-
-            const datosJSON = localStorage.getItem(clave);
-            const datos = JSON.parse(datosJSON);
-            const titulo = datos.Titulo;
-            const url = datos.URL; // reemplaza 'URL' con el nombre de la clave donde guardas la URL de la noticia
+    } else {
+        newsItems.slice(0, 5).forEach(function (newsItem) {
+            const titulo = newsItem.titulo;
+            const autor = newsItem.autor || '';
+            const categoria = newsItem.cat || '';
+            const pubDate = newsItem.date || '';
+            const descripcion = newsItem.des || '';
 
             rss += '<item>\n';
             rss += `<title>${titulo}</title>\n`;
-            rss += `<link>${url}</link>\n`;
-            rss += `<author>${datos.Autor}</author>\n`;
-            rss += `<category>${datos.Categoría}</category>\n`;
-            rss += `<date>${datos.Fecha}</date>\n`;
-            rss += `<description>${datos.Descripción}</description>\n`;
-
+            rss += `<author>${autor}</author>\n`;
+            rss += `<category>${categoria}</category>\n`;
+            rss += `<pubDate>${pubDate}</pubDate>\n`;
+            rss += `<description>${descripcion}</description>\n`;
             rss += '</item>\n';
-        }
+        });
+
+        rss += '</channel>\n';
+        rss += '</rss>';
+
+        const blob = new Blob([rss], { type: 'application/rss+xml' });
+        const url = URL.createObjectURL(blob);
+        const enlace = document.createElement('a');
+        enlace.href = url;
+        enlace.download = 'noticias.xml';
+        document.body.appendChild(enlace);
+        enlace.click();
+        document.body.removeChild(enlace);
+        URL.revokeObjectURL(url);
+
     }
 
-    rss += '</channel>\n';
-    rss += '</rss>';
-
-    const blob = new Blob([rss], {type: 'application/rss+xml'});
-    const url = URL.createObjectURL(blob);
-    const enlace = document.createElement('a');
-    enlace.href = url;
-    enlace.download = 'noticias.xml';
-    document.body.appendChild(enlace);
-    enlace.click();
-    document.body.removeChild(enlace);
-    URL.revokeObjectURL(url);
-};
-
-const botonRSS = document.createElement('button');
-botonRSS.textContent = 'Generar RSS';
-botonRSS.addEventListener('click', generarRSS);
-document.body.appendChild(botonRSS);
-
-  
+}
