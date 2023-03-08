@@ -1,17 +1,28 @@
-h1{
-    text-align: center;
-
+body, html {
+    margin: 0;
+    padding: 0;
+    background-image: url("558703\ \(2\).png");
 }
-div{
-    text-align: center;
-    margin: 0 auto;
-    width: 20%;
-    background-size: cover;
-    background-position: center;
 
-
+nav {
+    background-color: #333;
 }
-body{
-    background-image: url("558703 (2).png");
-
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 20px;
+    background-color: black;
+    max-width: 100%;
+    text-align: center;
+}
+.cabecera {
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+}
+li {
+    display: inline-block;
+    text-align: center;
+    margin-right: 20px;
 }

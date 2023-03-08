@@ -1,29 +1,37 @@
 function iniciar() {
     const contenedor = document.getElementById("datos");
-    for (let i = 0; i < localStorage.length; i++) {
-        const clave = localStorage.key(i);
-        if (clave.startsWith("datos-")) { // Buscar entradas con prefijo "datos-"
-            const datosJSON = localStorage.getItem(clave);
-            const datos = JSON.parse(datosJSON);
-            const elementoExistente = contenedor.querySelector(`div[data-identificador="${clave}"]`);
-            if (elementoExistente) { // Si ya existe, actualizar sus datos
-                for (let propiedad in datos) {
-                    elementoExistente.querySelector(`p[data-propiedad="${propiedad}"]`).innerHTML = `${propiedad}: ${datos[propiedad]}`;
+    const claves = Object.keys(localStorage).filter((clave) => clave.startsWith("datos-"));
+    const ultimasClaves = claves.slice(-5); // Obtener las últimas 5 claves
+    for (const clave of ultimasClaves) {
+        const datosJSON = localStorage.getItem(clave);
+        const datos = JSON.parse(datosJSON);
+        const elementoExistente = contenedor.querySelector(`div[data-identificador="${clave}"]`);
+        if (elementoExistente) { // Si ya existe, actualizar sus datos
+            for (let propiedad in datos) {
+                if (propiedad === "Titulo") {
+                    elementoExistente.querySelector(`a[data-propiedad="${propiedad}"]`).innerHTML = datos[propiedad];
+                    elementoExistente.querySelector(`a[data-propiedad="${propiedad}"]`).href = `noticia.html?id=${clave}`; // Establecer el enlace a la noticia
                 }
-            } else { // Si no existe, crear uno nuevo
-                const nuevoElemento = document.createElement("div");
-                nuevoElemento.setAttribute("data-identificador", clave);
-                for (let propiedad in datos) {
-                    const elemento = document.createElement("p");
+            }
+        } else { // Si no existe, crear uno nuevo
+            const nuevoElemento = document.createElement("div");
+            nuevoElemento.setAttribute("data-identificador", clave);
+            for (let propiedad in datos) {
+                if (propiedad === "Titulo") {
+                    const elemento = document.createElement("a"); // Agregar una etiqueta de enlace alrededor del título
                     elemento.setAttribute("data-propiedad", propiedad);
-                    elemento.innerHTML = `${propiedad}: ${datos[propiedad]}`;
+                    elemento.innerHTML = datos[propiedad];
+                    elemento.href = `noticia.html?id=${clave}`; // Establecer el enlace a la noticia
                     nuevoElemento.appendChild(elemento);
                 }
-                contenedor.appendChild(nuevoElemento);
             }
+            contenedor.appendChild(nuevoElemento);
         }
     }
 }
+
+  
+
 
 const generarRSS = () => {
     let rss = '<?xml version="1.0" encoding="UTF-8" ?>\n';
@@ -36,7 +44,7 @@ const generarRSS = () => {
     rss += '<description>Noticias de ejemplo</description>\n';
 
 
-    for (let i = 0; i < localStorage.length; i++) {
+    for (let i = 0; i < 5; i++) {
         const clave = localStorage.key(i);
         if (clave.startsWith("datos-")) {
 
@@ -76,4 +84,4 @@ botonRSS.textContent = 'Generar RSS';
 botonRSS.addEventListener('click', generarRSS);
 document.body.appendChild(botonRSS);
 
-
+  
