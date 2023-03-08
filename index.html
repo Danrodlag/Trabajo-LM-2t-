@@ -6,15 +6,18 @@
     <link rel="stylesheet" href="CSS/Formulario.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <script>
-        $(function() {    
-            $('#miForm').on('submit', function(e) {      
-                e.preventDefault();   
-                var jsonData=$(this).serializeArray()     
-                .reduce(function(a, z) { a[z.name] = z.value; return a; }, {});     
+    <script defer>
+        $(function() {
+            let contador = 0; // Contador para generar identificadores únicos
+            $('#miForm').on('submit', function(e) {
+                e.preventDefault();
+                const jsonData = $(this).serializeArray()
+                    .reduce(function(a, z) { a[z.name] = z.value; return a; }, {});
+                const identificador = `datos-${contador++}`; // Generar identificador único
                 const datosJSON = JSON.stringify(jsonData);
-                localStorage.setItem("datos", datosJSON);  
-            }); });
+                localStorage.setItem(identificador, datosJSON); // Guardar datos con identificador único
+            });
+        });
     </script>
 </head>
 <body>
