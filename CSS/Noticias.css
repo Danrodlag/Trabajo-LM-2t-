@@ -6,6 +6,7 @@ h1{
 nav {
     background-color: #333;
 }
+
 ul {
     list-style: none;
     margin: 0;
@@ -19,11 +20,14 @@ ul {
     color: white;
     text-decoration: none;
     padding: 10px 20px;
+    font-size: 1.2rem;
 }
+
 li {
     display: inline-block;
     text-align: center;
     margin-right: 20px;
+    font-size: 1.5rem;
 }
 div{
     text-align: center;
@@ -38,8 +42,28 @@ div{
 a{
     text-decoration: none;
     color: black;
+    font-size: 2rem;
+    font-family: sans-serif;
+    font-style: italic;
+}
+h1{
+    text-align: center;
+    font-size: 2.5rem;
 }
 body{
     background-image: url("558703 (2).png");
+
+}
+#algunanoticia{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: aliceblue;
+}
+#noticia{
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 1.5rem;
 
 }
