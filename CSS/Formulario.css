@@ -2,22 +2,20 @@
     text-align: center;
 }
 body{
-    background-color: black;
+    background-image: url("558703 (2).png");
     margin: 0px;
     width: 100%;
 }
 label{
-    color: white;
+    color: rgba(0, 0, 0, 0.945);
 }
 #titulo{
-    color: white;
+    color: rgba(0, 0, 0, 0.884);
 }
+
 form{
     margin: 0 auto;
     max-width: 50%;
-}
-form{
-    background-color: black;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -28,13 +26,14 @@ form{
 }
 #submit {
     border-radius: 10px;
-    border-color: white;
+    border-color: rgb(139, 212, 110);
     background-repeat: no-repeat;
     width: 50%;
     height: 50%;
     padding: 2%;
     margin: 20px;
     color: white;
+    background-color: black;
 }
 #submit:hover{
     background-image: url("sharingan-写輪眼 (1).gif");
@@ -44,7 +43,7 @@ form{
 }
 .botones2{
     border-radius: 10px;
-    border-color: white;
+    border-color: rgb(139, 212, 110);
     background-color: black;
     background-repeat: no-repeat;
     width: 50%;
@@ -67,5 +66,5 @@ form{
 }
 #enlace{
         text-decoration: none;
-        color:white;
+        color:rgba(0, 0, 0, 0.856);
 }
