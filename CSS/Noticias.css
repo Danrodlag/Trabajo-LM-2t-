@@ -52,16 +52,20 @@ h1{
 }
 body{
     background-image: url("558703 (2).png");
+    border: none;
+    margin: 0%;
 
 }
 #algunanoticia{
+    margin: 0%;
+    border: none;
+    background-color: aliceblue;
+}
+#noticia{
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
-    background-color: aliceblue;
-}
-#noticia{
     text-align: center;
     font-family: sans-serif;
     font-size: 1.5rem;
